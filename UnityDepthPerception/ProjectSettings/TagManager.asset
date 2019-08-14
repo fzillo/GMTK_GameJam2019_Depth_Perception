@@ -13,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ball
+  - Trophy
+  - Enemy
+  - Border
+  - PlayingField
+  - Player
   - 
   - 
   - 

@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    //public Transform actor;
     public Rigidbody2D rb;
 
     public Animator animator;
-
-    //public bool rbMovement = true;
-
+    
     public float movespeed = 20f;
     public bool movable= true;
 
@@ -48,8 +45,6 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (movable)
         {
-            //actor.Translate(m_moveVect * Time.deltaTime * movespeed);
-           
             rb.MovePosition(Vector2Int.RoundToInt(rb.position + m_moveVect * Time.deltaTime * movespeed));
         }
     }
