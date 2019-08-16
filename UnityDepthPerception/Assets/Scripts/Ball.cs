@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
 
     public float movespeed = 20f;
 
+    private bool btumble = true;
     private float m_timer = 0;
     public float switchDirAfterSeconds = 1f;
     public int yMovement = 1;
@@ -15,7 +16,7 @@ public class Ball : MonoBehaviour
     private void FixedUpdate()
     {
         m_timer = (m_timer + Time.deltaTime);
-        if (m_timer >= switchDirAfterSeconds)
+        if (btumble && m_timer >= switchDirAfterSeconds)
         {
             m_timer = m_timer % switchDirAfterSeconds;
             yMovement *= - 1;
