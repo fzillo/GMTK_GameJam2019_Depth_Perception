@@ -19,4 +19,9 @@ public class Enemy : MonoBehaviour
         Instantiate(prefabBall, this.transform.position + ballSpawnShiftVector, animator.transform.rotation);
         //Debug.Break();
     }
+
+    private void OnDestroy()
+    {
+        WaveController.enemiesOnField--;
+    }
 }

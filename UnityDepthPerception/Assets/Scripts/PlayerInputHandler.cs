@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public GameObject goBatHitBox;
 
     public Animator animator;
     
@@ -47,5 +48,15 @@ public class PlayerInputHandler : MonoBehaviour
         {
             rb.MovePosition(Vector2Int.RoundToInt(rb.position + m_moveVect * Time.deltaTime * movespeed));
         }
+    }
+
+    public void ActivateBatHitbox()
+    {
+        goBatHitBox.SetActive(true);
+    }
+
+    public void DeactivateBatHitbox()
+    {
+        goBatHitBox.SetActive(false);
     }
 }
