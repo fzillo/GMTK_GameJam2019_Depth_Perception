@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO ball in arch after hit?
 public class Ball : MonoBehaviour
 {    
     public Transform  tf;

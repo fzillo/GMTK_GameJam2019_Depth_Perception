@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HitBoxBat
   - Ball
+  - HitBar
   layers:
   - Default
   - TransparentFX

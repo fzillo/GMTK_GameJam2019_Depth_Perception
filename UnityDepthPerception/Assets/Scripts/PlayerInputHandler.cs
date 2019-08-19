@@ -6,6 +6,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     public Rigidbody2D rb;
     public GameObject goBatHitBox;
+    public GameObject goHitBar;
 
     public Animator animator;
     
@@ -58,5 +59,15 @@ public class PlayerInputHandler : MonoBehaviour
     public void DeactivateBatHitbox()
     {
         goBatHitBox.SetActive(false);
+    }
+
+    public void ActivateHitBar()
+    {
+        goHitBar.SetActive(true);
+    }
+
+    public void DeactivateHitBar()
+    {
+        goHitBar.SetActive(false);
     }
 }
