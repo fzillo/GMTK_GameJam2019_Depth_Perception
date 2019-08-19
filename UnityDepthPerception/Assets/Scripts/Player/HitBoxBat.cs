@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class HitBoxBat : MonoBehaviour
 {
-    public int baseSpeed = 20;
 
-    [SerializeField]
-    private int hitSpeed = 0;
-
+    public PlayerController player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Ball collidingBall = collision.gameObject.GetComponent<Ball>();
-        collidingBall.ApplyHit(hitSpeed);
-        hitSpeed = 0;
+        collidingBall.ApplyHit(player.GetHitSpeed());
     }
 
-    public void AddToBaseSpeed(int additionalSpeed) {
-        hitSpeed = baseSpeed + additionalSpeed;
-    }
-
+   
 }

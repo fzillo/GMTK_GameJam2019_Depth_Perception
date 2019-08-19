@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public GameObject goBatHitBox;
@@ -13,7 +14,12 @@ public class PlayerInputHandler : MonoBehaviour
     public float movespeed = 20f;
     public bool movable= true;
 
+    public float maximumHitSpeed = 120;
+    [SerializeField]
+    private float m_currentHitSpeed = 0;
+
     private Vector2 m_moveVect = new Vector2();
+
 
     void Update()
     {
@@ -38,7 +44,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerHitting"))
         {
-            Debug.Log("Hitting");
+            //Debug.Log("Hitting");
             movable = false;
         } else
         {
@@ -49,6 +55,16 @@ public class PlayerInputHandler : MonoBehaviour
         {
             rb.MovePosition(Vector2Int.RoundToInt(rb.position + m_moveVect * Time.deltaTime * movespeed));
         }
+    }
+    
+    public void MultiplyBaseSpeedByFactor(float factor)
+    {
+        m_currentHitSpeed = maximumHitSpeed * factor;
+    }
+    
+    public float GetHitSpeed()
+    {
+        return m_currentHitSpeed;
     }
 
     public void ActivateBatHitbox()

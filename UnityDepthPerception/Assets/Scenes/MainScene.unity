@@ -226,6 +226,8 @@ MonoBehaviour:
   animator: {fileID: 19574775}
   movespeed: 80
   movable: 1
+  maximumHitSpeed: 120
+  m_currentHitSpeed: 0
 --- !u!95 &19574775
 Animator:
   serializedVersion: 3
@@ -1227,8 +1229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9c24dbe20209b4aa703a4b05187c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 20
-  hitSpeed: 0
+  player: {fileID: 19574774}
 --- !u!1 &1188718889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,8 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472e2e83d3b9f194e94dc25440763530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progress: 0
-  hitBoxBat: {fileID: 1183528104}
+  player: {fileID: 19574774}
 --- !u!95 &1305885472
 Animator:
   serializedVersion: 3
@@ -1875,7 +1875,7 @@ PrefabInstance:
     - target: {fileID: 3866462174729107237, guid: 4caea4101d19b3441bf7cc56abc9328a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4caea4101d19b3441bf7cc56abc9328a, type: 3}
