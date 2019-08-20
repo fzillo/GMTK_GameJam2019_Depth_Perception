@@ -47,5 +47,10 @@ public class Ball : MonoBehaviour
         m_hitAngleMod = 1; //TODO dynamic angle!
         //btumble = false;
     }
-    
+
+    private void OnDestroy()
+    {
+        //TODO remove from Blinking Ball List
+    }
+
 }

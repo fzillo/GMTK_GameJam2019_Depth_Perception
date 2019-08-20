@@ -7,19 +7,21 @@ public class BlinkingBall : MonoBehaviour
 {
     public Transform leftBorder;
     public Transform rightBorder;
-    public List<Rigidbody2D> blinkingBalls;
+    public Rigidbody2D blinkingBall;
     public float blinksPerSecond = 1;
+
+    public int numberBlinkingBalls = 5;
 
     public bool bBlinking = false;
     public bool bExpandable = false;
 
     [Range(0, 1f)]
     public float expansionFactor = 1f;
-
-    [SerializeField]
-    private float m_deltaTime = 0;
-    [SerializeField]
+    
+    private List<Rigidbody2D> m_blinkingBallList;
     private float m_maximumDeltaX = 0;
+
+    private float m_deltaTime = 0;
 
     private float m_leftXBorder;
     private float m_rightXBorder;
@@ -30,6 +32,17 @@ public class BlinkingBall : MonoBehaviour
         m_rightXBorder = rightBorder.transform.position.x;
         
         m_maximumDeltaX = m_rightXBorder - m_leftXBorder;
+
+        m_blinkingBallList = new List<Rigidbody2D>();
+        m_blinkingBallList.Add(blinkingBall);
+
+        if (numberBlinkingBalls>1)
+        {
+            for (int i = 1; i < numberBlinkingBalls; i++)
+            {
+                m_blinkingBallList.Add(Instantiate(blinkingBall, transform));
+            }
+        }
     }
 
     private void Update()
@@ -53,24 +66,6 @@ public class BlinkingBall : MonoBehaviour
 
     private void ChangeExpansion()
     {
-        //float leftX = m_leftXBorder;
-        //float leftY = leftBorder.transform.position.y;
-        //float rightX = m_rightXBorder;
-        //float rightY = rightBorder.transform.position.y;
-
-        //float deltaX = rightX - leftX;
-        //float midPointX = leftX + (deltaX / 2);
-
-        //float deltaXCorrected = deltaX * percentAbsExpansion;
-        //float deltaXCorrectedHalved = deltaXCorrected / 2;
-
-        //float newLeftX = midPointX - deltaXCorrectedHalved;
-        //float newRightX = midPointX + deltaXCorrectedHalved;
-
-        //leftBorder.SetPositionAndRotation(new Vector2(newLeftX, leftY), Quaternion.identity);
-        //rightBorder.SetPositionAndRotation(new Vector2(newRightX, rightY), Quaternion.identity);
-
-
         float leftY = leftBorder.transform.position.y;
         float rightY = rightBorder.transform.position.y;
 
@@ -95,17 +90,17 @@ public class BlinkingBall : MonoBehaviour
         float rightXBorder = rightBorder.transform.position.x;
 
         float deltaX = rightXBorder - leftXBorder;
-        float lengthUnit = deltaX / blinkingBalls.Count;
+        float lengthUnit = deltaX / m_blinkingBallList.Count;
 
-        Debug.Log("deltaX " + deltaX + " lengthUnit " + lengthUnit);
+        //Debug.Log("deltaX " + deltaX + " lengthUnit " + lengthUnit);
         
-        for (int i = 0; i<blinkingBalls.Count; i++)
+        for (int i = 0; i < m_blinkingBallList.Count; i++)
         {
-            Rigidbody2D ball = blinkingBalls[i];
+            Rigidbody2D ball = m_blinkingBallList[i];
 
             float leftRange = leftXBorder + (lengthUnit * i);
             float rightRange = leftXBorder + (lengthUnit * (i +1));
-            Debug.Log("index " + i + " leftXBorder " + leftXBorder + " rightXBorder " + rightXBorder + " leftRange " + leftRange + " rightRange " + rightRange);
+            //Debug.Log("index " + i + " leftXBorder " + leftXBorder + " rightXBorder " + rightXBorder + " leftRange " + leftRange + " rightRange " + rightRange);
 
             float xValueBlink = UnityEngine.Random.Range(leftRange, rightRange);
             float yValueBlink = ball.position.y;
