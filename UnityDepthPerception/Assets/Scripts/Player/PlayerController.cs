@@ -86,4 +86,10 @@ public class PlayerController : MonoBehaviour
     {
         goHitBar.SetActive(false);
     }
+
+    public bool IsMoving()
+    {
+        return !m_moveVect.Equals(Vector2.zero);
+    }
+
 }
