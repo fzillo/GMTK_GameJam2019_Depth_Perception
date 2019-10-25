@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyDoNothingStateBehaviour : StateMachineBehaviour
-{
+public class EnemyDoNothingStateBehaviour : StateMachineBehaviour {
     public float chanceToStayPercent = 33f;
     private float deltaTime;
 
@@ -11,30 +10,25 @@ public class EnemyDoNothingStateBehaviour : StateMachineBehaviour
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         deltaTime = 0;
         waitInSeconds = Random.Range(waitSecondsMin, waitSecondsMax);
         Debug.Log(this + " waitInSeconds " + waitInSeconds);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         deltaTime += Time.deltaTime;
 
         //Debug.Log(this + " deltaTime " + deltaTime % 1000);
 
-        if (deltaTime % 1000 >= waitInSeconds)
-        {
+        if (deltaTime % 1000 >= waitInSeconds) {
             var randomFloat = Random.Range(0f, 100f);
             Debug.Log(this + " randomFloat " + randomFloat);
-            if (randomFloat > chanceToStayPercent)
-            {
+            if (randomFloat > chanceToStayPercent) {
                 animator.SetTrigger("DoRunAway");
             }
-            else
-            {
+            else {
                 animator.SetTrigger("DoGetNewBall");
             }
         }

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BlinkingBall : MonoBehaviour
-{
+public class BlinkingBall : MonoBehaviour {
     private readonly int numberBlinkingBalls = 5;
     public bool bAdjustBallVisibility;
 
@@ -39,8 +38,7 @@ public class BlinkingBall : MonoBehaviour
     public Transform rightBorderMarker;
     public float timeUntilExpansion = 1f;
 
-    private void Start()
-    {
+    private void Start() {
         m_leftXBorder = hittableBall.transform.position.x - maximumExpansion;
         m_rightXBorder = hittableBall.transform.position.x + maximumExpansion;
 
@@ -55,10 +53,8 @@ public class BlinkingBall : MonoBehaviour
         m_blinkingBallList = new List<GameObject>();
         m_blinkingBallList.Add(blinkingBall);
 
-        if (numberBlinkingBalls > 1)
-        {
-            for (var i = 1; i < numberBlinkingBalls; i++)
-            {
+        if (numberBlinkingBalls > 1) {
+            for (var i = 1; i < numberBlinkingBalls; i++) {
                 m_blinkingBallList.Add(Instantiate(blinkingBall, transform));
             }
         }
@@ -66,29 +62,23 @@ public class BlinkingBall : MonoBehaviour
         currentlyVisibleBlinkingBalls = numberBlinkingBalls;
     }
 
-    private void Update()
-    {
+    private void Update() {
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         deltaTimeBlink += Time.deltaTime;
 
 
         //Expansion
-        if (bExpandable)
-        {
-            if (bMovementbasedExpansion)
-            {
+        if (bExpandable) {
+            if (bMovementbasedExpansion) {
                 ChangeExpansionMovementbased();
             }
 
-            if (bAdjustBallVisibility)
-            {
+            if (bAdjustBallVisibility) {
                 var desiredVisibleBlinkingBallsCount = DetermineDesiredBallCount();
 
-                if (desiredVisibleBlinkingBallsCount != currentlyVisibleBlinkingBalls)
-                {
+                if (desiredVisibleBlinkingBallsCount != currentlyVisibleBlinkingBalls) {
                     AdjustBlinkingBallVisibility(desiredVisibleBlinkingBallsCount);
                 }
             }
@@ -97,10 +87,8 @@ public class BlinkingBall : MonoBehaviour
         }
 
         //Blinking
-        if (deltaTimeBlink >= 1 / blinksPerSecond)
-        {
-            if (bBlinking)
-            {
+        if (deltaTimeBlink >= 1 / blinksPerSecond) {
+            if (bBlinking) {
                 Blink();
             }
 
@@ -111,19 +99,15 @@ public class BlinkingBall : MonoBehaviour
         transform.Translate(Vector2.left * Time.deltaTime * movespeed); // + (Vector2.up * m_hitAngleMod)            
     }
 
-    private void AdjustBlinkingBallVisibility(int desiredVisibleBlinkingBallsCount)
-    {
+    private void AdjustBlinkingBallVisibility(int desiredVisibleBlinkingBallsCount) {
         var n_ballsActivated = 0;
 
-        for (var i = 0; i < m_blinkingBallList.Count; i++)
-        {
-            if (i <= desiredVisibleBlinkingBallsCount - 1)
-            {
+        for (var i = 0; i < m_blinkingBallList.Count; i++) {
+            if (i <= desiredVisibleBlinkingBallsCount - 1) {
                 m_blinkingBallList[i].SetActive(true);
                 n_ballsActivated++;
             }
-            else
-            {
+            else {
                 m_blinkingBallList[i].SetActive(false);
             }
         }
@@ -131,30 +115,24 @@ public class BlinkingBall : MonoBehaviour
         currentlyVisibleBlinkingBalls = n_ballsActivated;
     }
 
-    private int DetermineDesiredBallCount()
-    {
-        if (expansionFactor >= 0 && expansionFactor < 0.1f)
-        {
+    private int DetermineDesiredBallCount() {
+        if (expansionFactor >= 0 && expansionFactor < 0.1f) {
             return 1;
         }
 
-        if (expansionFactor >= 0.1f && expansionFactor < 0.2f)
-        {
+        if (expansionFactor >= 0.1f && expansionFactor < 0.2f) {
             return 2;
         }
 
-        if (expansionFactor >= 0.2f && expansionFactor < 0.3f)
-        {
+        if (expansionFactor >= 0.2f && expansionFactor < 0.3f) {
             return 3;
         }
 
-        if (expansionFactor >= 0.3f && expansionFactor < 0.5f)
-        {
+        if (expansionFactor >= 0.3f && expansionFactor < 0.5f) {
             return 4;
         }
 
-        if (expansionFactor >= 0.5f && expansionFactor <= 1f)
-        {
+        if (expansionFactor >= 0.5f && expansionFactor <= 1f) {
             return 5;
         }
 
@@ -162,41 +140,32 @@ public class BlinkingBall : MonoBehaviour
     }
 
 
-    private void ChangeExpansionMovementbased()
-    {
+    private void ChangeExpansionMovementbased() {
         deltaTimeExpand += Time.deltaTime;
 
-        if (player.IsMoving())
-        {
-            if (expansionFactor > 0)
-            {
+        if (player.IsMoving()) {
+            if (expansionFactor > 0) {
                 expansionFactor = expansionFactor - modifierShrinking;
             }
-            else
-            {
+            else {
                 expansionFactor = 0;
             }
 
             deltaTimeExpand = 0;
         }
-        else
-        {
-            if (expansionFactor < 1)
-            {
-                if (deltaTimeExpand >= timeUntilExpansion)
-                {
+        else {
+            if (expansionFactor < 1) {
+                if (deltaTimeExpand >= timeUntilExpansion) {
                     expansionFactor = expansionFactor + modifierExpanding;
                 }
             }
-            else
-            {
+            else {
                 expansionFactor = 1f;
             }
         }
     }
 
-    private void CalculateCurrentExpansion()
-    {
+    private void CalculateCurrentExpansion() {
         var leftY = leftBorderMarker.transform.position.y;
         var rightY = rightBorderMarker.transform.position.y;
 
@@ -215,8 +184,7 @@ public class BlinkingBall : MonoBehaviour
         rightBorderMarker.SetPositionAndRotation(new Vector2(newRightX, rightY), Quaternion.identity);
     }
 
-    private void Blink()
-    {
+    private void Blink() {
         var leftXBorder = leftBorderMarker.transform.position.x;
         var rightXBorder = rightBorderMarker.transform.position.x;
 
@@ -225,12 +193,10 @@ public class BlinkingBall : MonoBehaviour
 
         //Debug.Log("deltaX " + deltaX + " lengthUnit " + lengthUnit);
 
-        for (var i = 0; i < m_blinkingBallList.Count; i++)
-        {
+        for (var i = 0; i < m_blinkingBallList.Count; i++) {
             var ball = m_blinkingBallList[i];
 
-            if (ball.activeSelf == false)
-            {
+            if (ball.activeSelf == false) {
                 continue;
             }
 

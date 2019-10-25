@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyThrowingStateBehaviour : StateMachineBehaviour
-{
+public class EnemyThrowingStateBehaviour : StateMachineBehaviour {
     //public Transform prefabBall;
     //public Vector3 ballSpawnShiftVector = new Vector3(0, 0, 0);
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -17,8 +16,7 @@ public class EnemyThrowingStateBehaviour : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         //Debug.Log("Ball Spawn Position: " + (animator.transform.position + ballSpawnShiftVector));
         //Instantiate(prefabBall, animator.transform.position + ballSpawnShiftVector, animator.transform.rotation);
     }

@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
-public class PlayerChargingStateBehaviour : StateMachineBehaviour
-{
+public class PlayerChargingStateBehaviour : StateMachineBehaviour {
     private HitBar hitbar;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         hitbar = animator.gameObject.GetComponentInChildren<HitBar>(true);
 
         hitbar.gameObject.SetActive(true);
@@ -19,8 +17,7 @@ public class PlayerChargingStateBehaviour : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         hitbar.gameObject.SetActive(false);
     }
 
