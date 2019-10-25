@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     public GameObject parent;
-    
+
     public void ApplyHit(float hitSpeed)
     {
         Debug.Log("Ball " + this + " got hit! Speed: " + hitSpeed);
@@ -17,5 +15,4 @@ public class Ball : MonoBehaviour
     {
         Destroy(parent);
     }
-
 }

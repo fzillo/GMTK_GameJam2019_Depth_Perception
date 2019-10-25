@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyRunningStateBehaviour : StateMachineBehaviour
 {
-
     public float movespeed = 20f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -14,11 +11,11 @@ public class EnemyRunningStateBehaviour : StateMachineBehaviour
     //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.Translate(Vector2.left * Time.deltaTime * movespeed);
-            
-            //animator.transform.position + (Vector2.left * Time.deltaTime * movespeed));
+
+        //animator.transform.position + (Vector2.left * Time.deltaTime * movespeed));
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

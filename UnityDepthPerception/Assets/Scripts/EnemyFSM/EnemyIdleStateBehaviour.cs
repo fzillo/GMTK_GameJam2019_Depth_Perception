@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyIdleStateBehaviour : StateMachineBehaviour
 {
-    public int waitSecondsMin = 0;
-    public int waitSecondsMax = 5;
+    private float deltaTime;
 
-    private int waitInSeconds = 0;
-    private float deltaTime = 0;
+    private int waitInSeconds;
+    public int waitSecondsMax = 5;
+    public int waitSecondsMin;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         deltaTime = 0;
         waitInSeconds = Random.Range(waitSecondsMin, waitSecondsMax);
@@ -19,16 +17,13 @@ public class EnemyIdleStateBehaviour : StateMachineBehaviour
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         deltaTime += Time.deltaTime;
 
         //Debug.Log(this + " deltaTime " + deltaTime % 1000);
 
-        if(deltaTime%1000  >= waitInSeconds)
-        {
-            animator.SetTrigger("DoThrow");
-        }
+        if (deltaTime % 1000 >= waitInSeconds) animator.SetTrigger("DoThrow");
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

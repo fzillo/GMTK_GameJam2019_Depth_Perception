@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HitBar : MonoBehaviour
 {
-    private int m_progress=10; // starting with 10 percent
     private float m_factor = 1;
+    private int m_progress = 10; // starting with 10 percent
     public PlayerController player;
 
     private void OnEnable()
