@@ -40,8 +40,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HittableBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/HitBoxBat.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Ball/HitBoxBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Ball/SwooshingBall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Ball/HitBoxBall.cs" />
       </list>
     </option>
   </component>

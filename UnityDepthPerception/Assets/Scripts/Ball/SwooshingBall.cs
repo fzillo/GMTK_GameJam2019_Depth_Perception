@@ -7,7 +7,7 @@ using UnityEngine.WSA;
 public class SwooshingBall : MonoBehaviour {
 
     public enum SwooshingPosition {
-        Initial, Left, Center, Right
+        Left, Center, Right
     };
     
     public PlayerController player;
@@ -28,12 +28,11 @@ public class SwooshingBall : MonoBehaviour {
     public float minimumScaleX = 1f;
     
     private bool bConstricted = true;
-    private SwooshingPosition m_swooshingPosition = SwooshingPosition.Initial;
+    private SwooshingPosition m_swooshingPosition = SwooshingPosition.Center;
     
     private float m_deltaTimeBeforeSwooshing=0f;
     private bool m_expandable = false;
-    private bool m_swooshing = false;
-
+    private bool m_swooshingActive = false;
 
     private void FixedUpdate() {
         if (bDynamicExpansion){
@@ -60,21 +59,20 @@ public class SwooshingBall : MonoBehaviour {
             Instantiate(ballPrefab, spawnposition, Quaternion.identity);
         }
         
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     private void ChangeExpansionBasedOnPlayerMovement() {
         if (!player.IsMoving()) {
-            
-            if (m_swooshingPosition.Equals(SwooshingPosition.Initial)){
+            if (!m_swooshingActive){
                 m_deltaTimeBeforeSwooshing += Time.deltaTime;
 
                 if (m_deltaTimeBeforeSwooshing >= secondsBeforeExpansion) {
                     anim.SetTrigger("StartSwooshing");
-                    anim.ResetTrigger("EndSwooshing");
-                    //Debug.Log(gameObject + "starts Swooshing.");
-                    m_deltaTimeBeforeSwooshing = 0f;
+                    m_swooshingActive = true;
                     m_expandable = true;
+                    m_deltaTimeBeforeSwooshing = 0f;
+                    anim.ResetTrigger("EndSwooshing");
                 }
             } else {
                 if (m_expandable && transform.localScale.x <= maximumScaleX) {
@@ -83,7 +81,7 @@ public class SwooshingBall : MonoBehaviour {
             }
         }
         else {
-            if (!m_swooshingPosition.Equals(SwooshingPosition.Initial)) {
+            if (m_swooshingActive) {
                 if (transform.localScale.x >= minimumScaleX) {
                     transform.localScale += new Vector3(-shrinkingRate, 0, 0);
                 }
@@ -101,6 +99,15 @@ public class SwooshingBall : MonoBehaviour {
         return bConstricted;
     }
 
+    public void SetSwooshingActiveByFlag(int flag) {
+        if (flag != 0){
+            m_swooshingActive = true;
+        }
+        else {
+            m_swooshingActive = false;
+        }
+    }
+    
     public void SetSwooshingPosition(SwooshingPosition position) {
         m_swooshingPosition = position;
     }
