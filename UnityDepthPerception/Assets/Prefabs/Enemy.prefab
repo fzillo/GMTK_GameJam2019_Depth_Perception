@@ -131,7 +131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16, y: 40}
+  m_Size: {x: 18, y: 40}
   m_EdgeRadius: 0
 --- !u!95 &7437173231693130523
 Animator:
@@ -165,6 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7437173231693130523}
-  ballSpawnOffset: {x: -15, y: 0, z: 0}
-  prefabBlinkingBall: {fileID: 4249477573664647879, guid: ecf36946ce586834e9ef3896529892ca,
+  ballSpawnOffset: {x: -21.5, y: 5.5, z: 0}
+  prefabBlinkingBall: {fileID: 4877811292593742931, guid: 911d073a0a30ba843b135e00d5e21518,
     type: 3}

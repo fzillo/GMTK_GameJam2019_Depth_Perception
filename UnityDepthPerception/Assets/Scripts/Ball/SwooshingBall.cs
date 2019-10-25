@@ -10,21 +10,20 @@ public class SwooshingBall : MonoBehaviour {
         Left, Center, Right
     };
     
-    public PlayerController player;
+    private PlayerController player;
     public Animator anim;
     
     public Transform burningBallPrefab;
     public Transform ballPrefab;
-
-    public Transform leftHitSpawnPosition;
-    public Transform centerHitSpawnPosition;
-    public Transform rightHitSpawnPosition;
-
+    
+    
+    public float moveSpeed = 60f;
+    
     public bool bDynamicExpansion = true;
-    public float secondsBeforeExpansion = 2f;
-    public float expansionRate = 0.01f;
-    public float shrinkingRate = 0.02f;
-    public float maximumScaleX = 2.6f;
+    public float secondsBeforeExpansion = 1.4f;
+    public float expansionRate = 0.02f;
+    public float shrinkingRate = 0.06f;
+    public float maximumScaleX = 2.4f;
     public float minimumScaleX = 1f;
     
     private bool bConstricted = true;
@@ -34,29 +33,38 @@ public class SwooshingBall : MonoBehaviour {
     private bool m_expandable = false;
     private bool m_swooshingActive = false;
 
+    private void Start() {
+         GameObject[] goListPlayer = GameObject.FindGameObjectsWithTag("Player");
+         GameObject playerGo = goListPlayer[0];
+
+         player = playerGo.GetComponent<PlayerController>();
+
+    }
+
     private void FixedUpdate() {
         if (bDynamicExpansion){
             ChangeExpansionBasedOnPlayerMovement();
         }
+        //Movement
+        transform.Translate(Vector2.left * Time.deltaTime * moveSpeed);  
     }
 
-    public void ApplyHit(float hitSpeed) {
+    public void ApplyHit(float spawnPositionX, float hitSpeed) {
         Debug.Log("Ball " + this + " got hit! Speed: " + hitSpeed);
 
-        Vector2 spawnposition = this.transform.position;
+        Vector2 spawnPosition;
+        if (m_swooshingActive) {
+            spawnPosition = new Vector2(spawnPositionX, this.transform.position.y); 
+        }
+        else {
+            spawnPosition =  this.transform.position; 
+        }
 
-         if (m_swooshingPosition.Equals(SwooshingPosition.Left)) {
-             spawnposition = leftHitSpawnPosition.position;
-         } else if (m_swooshingPosition.Equals(SwooshingPosition.Center)) {
-             spawnposition = centerHitSpawnPosition.position;
-         } else if (m_swooshingPosition.Equals(SwooshingPosition.Right)) {
-             spawnposition = rightHitSpawnPosition.position;
-         }
 
         if (hitSpeed >= 100) {
-            Instantiate(burningBallPrefab, spawnposition, Quaternion.identity);
+            Instantiate(burningBallPrefab, spawnPosition, Quaternion.identity);
         } else {
-            Instantiate(ballPrefab, spawnposition, Quaternion.identity);
+            Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
         }
         
         Destroy(this.gameObject);
@@ -76,13 +84,16 @@ public class SwooshingBall : MonoBehaviour {
                 }
             } else {
                 if (m_expandable && transform.localScale.x <= maximumScaleX) {
+                    //TODO Shrink Y
                     transform.localScale += new Vector3(expansionRate, 0, 0);
                 }
             }
         }
         else {
+            m_deltaTimeBeforeSwooshing = 0f;
             if (m_swooshingActive) {
                 if (transform.localScale.x >= minimumScaleX) {
+                    //TODO Expand Y back to 1
                     transform.localScale += new Vector3(-shrinkingRate, 0, 0);
                 }
                 else {

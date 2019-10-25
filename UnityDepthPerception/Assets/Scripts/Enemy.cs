@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour {
     public void SpawnBall() {
         Debug.Log("Ball Spawn Position: " + (transform.position + ballSpawnOffset));
         Instantiate(prefabBlinkingBall, transform.position + ballSpawnOffset, animator.transform.rotation);
-        //Debug.Break();
+        Debug.Break();
     }
 
     private void OnDestroy() {

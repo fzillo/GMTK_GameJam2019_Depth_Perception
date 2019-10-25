@@ -11,11 +11,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WaveController/Wave.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball/SwooshingBall.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trophy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball/HitBoxBall.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/HitBar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball/BlinkingBall.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball/FlyingAwayBall.cs" root0="FORCE_HIGHLIGHTING" />
@@ -38,10 +35,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BlinkingBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FlyingAwayBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HittableBall.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/HitBoxBat.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Ball/SwooshingBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Ball/HitBoxBall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Ball/SwooshingBall.cs" />
       </list>
     </option>
   </component>

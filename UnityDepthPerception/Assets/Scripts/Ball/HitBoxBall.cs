@@ -34,9 +34,11 @@ public class HitBoxBall : MonoBehaviour {
         }
 
         if (other.CompareTag("HitBoxBat") && CheckIfHit()) {
+            float spawnPositionX = this.transform.position.x + ((other.transform.position.x - this.transform.position.x) / 2);
+            
             var player = other.GetComponentInParent<PlayerController>();
             bAlreadyHit = true;
-            ball.ApplyHit(player.GetHitSpeed());
+            ball.ApplyHit(spawnPositionX, player.GetHitSpeed());
         }
     }
 }
