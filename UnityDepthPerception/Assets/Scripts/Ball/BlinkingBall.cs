@@ -96,7 +96,7 @@ public class BlinkingBall : MonoBehaviour {
         }
 
         //Movement
-        transform.Translate(Vector2.left * Time.deltaTime * movespeed); // + (Vector2.up * m_hitAngleMod)            
+        transform.Translate(Vector2.left * Time.deltaTime * movespeed);          
     }
 
     private void AdjustBlinkingBallVisibility(int desiredVisibleBlinkingBallsCount) {
