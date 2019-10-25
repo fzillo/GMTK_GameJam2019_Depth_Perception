@@ -39,11 +39,18 @@ public class PlayerController : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerHitting"))
             //Debug.Log("Hitting");
+        {
             movable = false;
+        }
         else
+        {
             movable = true;
+        }
 
-        if (movable) rb.MovePosition(Vector2Int.RoundToInt(rb.position + m_moveVect * Time.deltaTime * movespeed));
+        if (movable)
+        {
+            rb.MovePosition(Vector2Int.RoundToInt(rb.position + m_moveVect * Time.deltaTime * movespeed));
+        }
     }
 
     public void MultiplyBaseSpeedByFactor(float factor)

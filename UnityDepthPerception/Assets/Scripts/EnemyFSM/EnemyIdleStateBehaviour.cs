@@ -23,7 +23,10 @@ public class EnemyIdleStateBehaviour : StateMachineBehaviour
 
         //Debug.Log(this + " deltaTime " + deltaTime % 1000);
 
-        if (deltaTime % 1000 >= waitInSeconds) animator.SetTrigger("DoThrow");
+        if (deltaTime % 1000 >= waitInSeconds)
+        {
+            animator.SetTrigger("DoThrow");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

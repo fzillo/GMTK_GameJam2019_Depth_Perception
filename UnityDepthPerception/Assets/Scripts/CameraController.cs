@@ -6,6 +6,9 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F)) animator.SetTrigger("DoShake");
+        if (Input.GetKey(KeyCode.F))
+        {
+            animator.SetTrigger("DoShake");
+        }
     }
 }

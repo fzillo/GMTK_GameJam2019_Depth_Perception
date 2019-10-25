@@ -30,9 +30,13 @@ public class EnemyDoNothingStateBehaviour : StateMachineBehaviour
             var randomFloat = Random.Range(0f, 100f);
             Debug.Log(this + " randomFloat " + randomFloat);
             if (randomFloat > chanceToStayPercent)
+            {
                 animator.SetTrigger("DoRunAway");
+            }
             else
+            {
                 animator.SetTrigger("DoGetNewBall");
+            }
         }
     }
 

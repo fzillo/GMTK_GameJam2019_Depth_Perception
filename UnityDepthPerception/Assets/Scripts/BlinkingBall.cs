@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BlinkingBall : MonoBehaviour
 {
+    private readonly int numberBlinkingBalls = 5;
     public bool bAdjustBallVisibility;
 
     public bool bBlinking;
@@ -34,8 +35,6 @@ public class BlinkingBall : MonoBehaviour
     public float modifierShrinking = 0.02f;
 
     public float movespeed = 60f;
-
-    private readonly int numberBlinkingBalls = 5;
     public PlayerController player;
     public Transform rightBorderMarker;
     public float timeUntilExpansion = 1f;
@@ -57,8 +56,12 @@ public class BlinkingBall : MonoBehaviour
         m_blinkingBallList.Add(blinkingBall);
 
         if (numberBlinkingBalls > 1)
+        {
             for (var i = 1; i < numberBlinkingBalls; i++)
+            {
                 m_blinkingBallList.Add(Instantiate(blinkingBall, transform));
+            }
+        }
 
         currentlyVisibleBlinkingBalls = numberBlinkingBalls;
     }
@@ -75,13 +78,19 @@ public class BlinkingBall : MonoBehaviour
         //Expansion
         if (bExpandable)
         {
-            if (bMovementbasedExpansion) ChangeExpansionMovementbased();
+            if (bMovementbasedExpansion)
+            {
+                ChangeExpansionMovementbased();
+            }
+
             if (bAdjustBallVisibility)
             {
                 var desiredVisibleBlinkingBallsCount = DetermineDesiredBallCount();
 
                 if (desiredVisibleBlinkingBallsCount != currentlyVisibleBlinkingBalls)
+                {
                     AdjustBlinkingBallVisibility(desiredVisibleBlinkingBallsCount);
+                }
             }
 
             CalculateCurrentExpansion();
@@ -90,7 +99,11 @@ public class BlinkingBall : MonoBehaviour
         //Blinking
         if (deltaTimeBlink >= 1 / blinksPerSecond)
         {
-            if (bBlinking) Blink();
+            if (bBlinking)
+            {
+                Blink();
+            }
+
             deltaTimeBlink = 0;
         }
 
@@ -103,6 +116,7 @@ public class BlinkingBall : MonoBehaviour
         var n_ballsActivated = 0;
 
         for (var i = 0; i < m_blinkingBallList.Count; i++)
+        {
             if (i <= desiredVisibleBlinkingBallsCount - 1)
             {
                 m_blinkingBallList[i].SetActive(true);
@@ -112,6 +126,7 @@ public class BlinkingBall : MonoBehaviour
             {
                 m_blinkingBallList[i].SetActive(false);
             }
+        }
 
         currentlyVisibleBlinkingBalls = n_ballsActivated;
     }
@@ -119,14 +134,30 @@ public class BlinkingBall : MonoBehaviour
     private int DetermineDesiredBallCount()
     {
         if (expansionFactor >= 0 && expansionFactor < 0.1f)
+        {
             return 1;
+        }
+
         if (expansionFactor >= 0.1f && expansionFactor < 0.2f)
+        {
             return 2;
+        }
+
         if (expansionFactor >= 0.2f && expansionFactor < 0.3f)
+        {
             return 3;
+        }
+
         if (expansionFactor >= 0.3f && expansionFactor < 0.5f)
+        {
             return 4;
-        if (expansionFactor >= 0.5f && expansionFactor <= 1f) return 5;
+        }
+
+        if (expansionFactor >= 0.5f && expansionFactor <= 1f)
+        {
+            return 5;
+        }
+
         return 1;
     }
 
@@ -138,9 +169,13 @@ public class BlinkingBall : MonoBehaviour
         if (player.IsMoving())
         {
             if (expansionFactor > 0)
+            {
                 expansionFactor = expansionFactor - modifierShrinking;
+            }
             else
+            {
                 expansionFactor = 0;
+            }
 
             deltaTimeExpand = 0;
         }
@@ -148,7 +183,10 @@ public class BlinkingBall : MonoBehaviour
         {
             if (expansionFactor < 1)
             {
-                if (deltaTimeExpand >= timeUntilExpansion) expansionFactor = expansionFactor + modifierExpanding;
+                if (deltaTimeExpand >= timeUntilExpansion)
+                {
+                    expansionFactor = expansionFactor + modifierExpanding;
+                }
             }
             else
             {
@@ -191,7 +229,10 @@ public class BlinkingBall : MonoBehaviour
         {
             var ball = m_blinkingBallList[i];
 
-            if (ball.activeSelf == false) continue;
+            if (ball.activeSelf == false)
+            {
+                continue;
+            }
 
             var leftRange = leftXBorder + lengthUnit * i;
             var rightRange = leftXBorder + lengthUnit * (i + 1);

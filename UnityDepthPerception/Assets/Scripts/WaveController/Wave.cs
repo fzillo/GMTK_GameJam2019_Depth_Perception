@@ -28,14 +28,20 @@ public class Wave : MonoBehaviour
     public bool IsWaveFinished()
     {
         if (m_spawnIndex >= spawns.Length)
+        {
             return true;
+        }
+
         return false;
     }
 
     public bool IsItTimeToSpawn()
     {
         if (m_waveActive && !IsWaveFinished() && m_waveDeltaTime % 1000 >= spawns[m_spawnIndex].spawnAfterSeconds)
+        {
             return true;
+        }
+
         return false;
     }
 
@@ -43,7 +49,9 @@ public class Wave : MonoBehaviour
     {
         if (m_waveActive)
             //Debug.Log("Current Wave deltaTime: " + m_waveDeltaTime);
+        {
             m_waveDeltaTime += Time.deltaTime;
+        }
     }
 
     public void SetWaveActive(bool bActive)

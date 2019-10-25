@@ -26,7 +26,10 @@ public class WaveController : MonoBehaviour
 
     private void HandleWaveSpawning()
     {
-        if (!m_controllerActive || m_currentWave == null) return;
+        if (!m_controllerActive || m_currentWave == null)
+        {
+            return;
+        }
 
         if (m_currentWave.IsWaveFinished() && enemiesOnField == 0)
         {
@@ -48,6 +51,9 @@ public class WaveController : MonoBehaviour
             }
         }
 
-        if (!m_currentWave.IsWaveFinished() && m_currentWave.IsItTimeToSpawn()) m_currentWave.SpawnNextEnemy();
+        if (!m_currentWave.IsWaveFinished() && m_currentWave.IsItTimeToSpawn())
+        {
+            m_currentWave.SpawnNextEnemy();
+        }
     }
 }
